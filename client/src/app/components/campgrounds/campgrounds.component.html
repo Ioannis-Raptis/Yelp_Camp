@@ -1,8 +1,9 @@
 <h1>This is the campgrounds page</h1>
-<ul *ngFor='let campground of campgrounds'>
+<a href="campgrounds/new">Add new campground</a>
+<ul *ngFor='let campground of campgroundData'>
   <li>
       {{campground.name}}
   </li>
-  <img src="{{campground.image}}" alt="">
+  <img src="{{campground.imageUrl}}" alt="">
 </ul>
 <app-footer></app-footer>
