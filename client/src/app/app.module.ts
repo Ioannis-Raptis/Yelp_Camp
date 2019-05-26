@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CreateCampgroundComponent } from './components/create-campground/create-campground.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CampgroundsComponent,
     HeaderComponent,
     FooterComponent,
-    CreateCampgroundComponent
+    CreateCampgroundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
