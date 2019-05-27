@@ -16,7 +16,7 @@ export class CampgroundService {
     return this.http.get<Campground[]>(this.campgroundsUrl);
   }
 
-  public addNew(campground: Campground): Observable<void> {
+  public create(campground: Campground): Observable<void> {
     return this.http.post<void>(this.campgroundsUrl, {
       name: campground.name,
       imageUrl: campground.imageUrl,
