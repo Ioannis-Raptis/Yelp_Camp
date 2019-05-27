@@ -1,25 +1,44 @@
-import { Injectable, HttpService } from '@nestjs/common';
+import { Injectable, HttpService, Logger } from '@nestjs/common';
 import { Campground } from 'src/interfaces/campground-interface';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class CampgroundsService {
-  constructor(private readonly http: HttpService) { }
+  constructor(private readonly http: HttpService,
+              @InjectModel('Campground')
+               private readonly campgroundModel: Model<Campground>) { }
 
-  public campgrounds: Campground[] = [
-    // tslint:disable-next-line:max-line-length
-    { name: 'Salmon Creek', imageUrl: 'https://images.unsplash.com/photo-1455763916899-e8b50eca9967?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80' },
-    // tslint:disable-next-line:max-line-length
-    { name: 'Granite Hill', imageUrl: 'https://images.unsplash.com/photo-1536650135175-9b3cd4f36cff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80' },
-    // tslint:disable-next-line:max-line-length
-    { name: 'Mountain Goat\'s Rest', imageUrl: 'https://images.unsplash.com/photo-1494137319847-a9592a0e73ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80' },
-  ];
-
-  findAll(): Campground[] {
-    return this.campgrounds;
+  async findAll(): Promise<Campground[]> {
+    try {
+      return await this.campgroundModel.find();
+    } catch (error) {
+      Logger.log(`Querying all documents failed because of: ${error}`);
+    }
   }
 
-  addNew(campground: Campground) {
-    return this.campgrounds.push(campground);
+  async create(campground: Campground): Promise<Campground> {
+    try {
+      const newCampground = new this.campgroundModel(campground);
+      return await newCampground.save();
+    } catch (error) {
+      Logger.log(`Creating new document failed because of: ${error}`);
+    }
   }
 
+  async delete(id: string): Promise<Campground> {
+    try {
+      return await this.campgroundModel.findByIdAndRemove(id);
+    } catch (error) {
+      Logger.log(`Deleting document failed because of: ${error}`);
+    }
+  }
+
+  async update(id: string, campground: Campground): Promise<Campground> {
+    try {
+      return await this.campgroundModel.findByIdAndUpdate(id, campground, { new: true });
+    } catch (error) {
+      Logger.log(`Updating document failed because of: ${error}`);
+    }
+  }
 }

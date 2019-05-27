@@ -27,7 +27,7 @@ export class CreateCampgroundComponent implements OnInit {
       imageUrl: this.myImageUrl
     };
 
-    const campgroundObv = this.campgroundService.addNew(myCampground);
+    const campgroundObv = this.campgroundService.create(myCampground);
     campgroundObv.subscribe(() => {
       this.router.navigate(['/campgrounds']);
     });
