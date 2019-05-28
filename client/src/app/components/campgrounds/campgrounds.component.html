@@ -4,7 +4,7 @@
   <header class="jumbotron">
     <h1>Welcome to Yelp Camp</h1>
     <p>View our hand picked campgrounds from all over the world</p>
-    <p><a href="campgrounds/new" class="btn btn-primary btn-lg">Create a new campground</a></p>
+    <p><a routerLink="/campgrounds/new" class="btn btn-info btn-lg">Create a new campground</a></p>
   </header>
 
   <div class="row">
@@ -14,9 +14,12 @@
   </div>
 
   <div class="row text-center">
-    <div *ngFor='let campground of campgroundData' class="col-xl-3 col-lg-4 col-md-6" >
+    <div *ngFor='let campground of campgroundData' class="col-xl-3 col-lg-4 col-md-6">
       <img src="{{campground.imageUrl}}" class="img-fluid" class="img-thumbnail">  
       <h4>{{campground.name}}</h4>
+      <p>
+        <a [routerLink]="['/campgrounds', campground._id]" class="btn btn-info">More info</a>
+      </p>
     </div>
   </div>
   
