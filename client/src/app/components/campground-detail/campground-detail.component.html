@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+<div *ngIf=campground>
+  <h1>{{campground.name}}</h1>
+  <img src="{{campground.imageUrl}}">
+  <p>{{campground.description}}</p>
+  <a routerLink="/campgrounds">Return To Campgrounds</a>
+</div>

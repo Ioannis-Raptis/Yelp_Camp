@@ -12,6 +12,11 @@ export class CampgroundsController {
     return this.campgroundsService.findAll();
   }
 
+  @Get(':id')
+    findOne(@Param('id') id): Promise<Campground> {
+      return this.campgroundsService.findOne(id);
+    }
+
   @Post()
   create(@Body() campground: Campground) {
     this.campgroundsService.create(campground);

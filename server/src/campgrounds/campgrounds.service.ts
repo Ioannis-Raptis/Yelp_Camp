@@ -17,6 +17,14 @@ export class CampgroundsService {
     }
   }
 
+  async findOne(id: string): Promise<Campground> {
+    try {
+      return await this.campgroundModel.findOne({ _id: id });
+    } catch (error) {
+      Logger.log(`Querying the document failed because of: ${error}`);
+    }
+  }
+
   async create(campground: Campground): Promise<Campground> {
     try {
       const newCampground = new this.campgroundModel(campground);

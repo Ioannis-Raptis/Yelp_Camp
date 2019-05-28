@@ -16,10 +16,15 @@ export class CampgroundService {
     return this.http.get<Campground[]>(this.campgroundsUrl);
   }
 
+  public getById(id: string): Observable<Campground> {
+    return this.http.get<Campground>(this.campgroundsUrl + '/' + id);
+  }
+
   public create(campground: Campground): Observable<void> {
     return this.http.post<void>(this.campgroundsUrl, {
       name: campground.name,
       imageUrl: campground.imageUrl,
+      description: campground.description
     });
   }
 

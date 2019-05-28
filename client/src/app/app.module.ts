@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CreateCampgroundComponent } from './components/create-campground/create-campground.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CampgroundDetailComponent } from './components/campground-detail/campground-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HeaderComponent,
     FooterComponent,
     CreateCampgroundComponent,
-    NavbarComponent
+    NavbarComponent,
+    CampgroundDetailComponent
   ],
   imports: [
     BrowserModule,
