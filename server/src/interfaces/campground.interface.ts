@@ -3,4 +3,5 @@ export interface Campground {
   imageUrl: string;
   description: string;
   _id: string;
+  comments: string[];
 }

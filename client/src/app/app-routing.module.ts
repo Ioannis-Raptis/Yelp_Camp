@@ -4,13 +4,15 @@ import { CampgroundsComponent } from './components/campgrounds/campgrounds.compo
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { CreateCampgroundComponent } from './components/create-campground/create-campground.component';
 import { CampgroundDetailComponent } from './components/campground-detail/campground-detail.component';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
   {path: 'campgrounds', component: CampgroundsComponent},
   {path: 'campgrounds/new', component: CreateCampgroundComponent},
-  {path: 'campgrounds/:id', component: CampgroundDetailComponent}
+  {path: 'campgrounds/:id', component: CampgroundDetailComponent},
+  {path: 'campgrounds/:id/comments/new', component: CreateCommentComponent}
 ];
 
 @NgModule({
