@@ -3,5 +3,12 @@
   <h1>{{campground.name}}</h1>
   <img src="{{campground.imageUrl}}">
   <p>{{campground.description}}</p>
+  <div *ngFor="let comment of comments">
+    <p>
+      {{comment.author}}: 
+      {{comment.text}}
+    </p>
+  </div>
+  <p><a routerLink="/campgrounds/{{campground._id}}/comments/new" class="btn btn-info btn-lg">Add a new comment</a></p>
   <a routerLink="/campgrounds">Return To Campgrounds</a>
 </div>

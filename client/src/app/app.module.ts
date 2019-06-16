@@ -11,6 +11,7 @@ import { CreateCampgroundComponent } from './components/create-campground/create
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CampgroundDetailComponent } from './components/campground-detail/campground-detail.component';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CampgroundDetailComponent } from './components/campground-detail/campgr
     FooterComponent,
     CreateCampgroundComponent,
     NavbarComponent,
-    CampgroundDetailComponent
+    CampgroundDetailComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Injectable, HttpService, Logger } from '@nestjs/common';
-import { Campground } from 'src/interfaces/campground-interface';
+import { Campground } from 'src/interfaces/campground.interface';
+import { Comment } from 'src/interfaces/comment.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -7,7 +8,9 @@ import { InjectModel } from '@nestjs/mongoose';
 export class CampgroundsService {
   constructor(private readonly http: HttpService,
               @InjectModel('Campground')
-               private readonly campgroundModel: Model<Campground>) { }
+    private readonly campgroundModel: Model<Campground>,
+              @InjectModel('Comment')
+    private readonly commentModel: Model<Comment>) { }
 
   async findAll(): Promise<Campground[]> {
     try {
@@ -49,4 +52,30 @@ export class CampgroundsService {
       Logger.log(`Updating document failed because of: ${error}`);
     }
   }
+
+  async addComment(campgroundId: string, comment: Comment): Promise<Comment> {
+    try {
+      const newComment = new this.commentModel(comment);
+      await newComment.save();
+      const campground = await this.findOne(campgroundId);
+      campground.comments.push(newComment);
+      await this.update(campgroundId, campground);
+      return newComment;
+    } catch (error) {
+      Logger.log(`Adding new comment failed because of: ${error}`);
+    }
+  }
+
+  async populateComments(campgroundId: string): Promise<Campground> {
+    try {
+      const campground = await this.campgroundModel.
+      findOne({ _id: campgroundId }).
+      populate('comments');
+
+      return campground.comments;
+      } catch (error) {
+      Logger.log(`Populating comments failed because of: ${error}`);
+    }
+  }
+
 }

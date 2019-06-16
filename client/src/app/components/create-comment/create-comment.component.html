@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+    <h1 *ngIf=campground class="col-12 d-flex justify-content-center">Add a new Comment to {{campground.name}} Campground</h1>
+        <input class="form-control" type="text"  name="comment[text]" placeholder="Text" [(ngModel)]="myText">
+        <input class="form-control" type="text" name="comment[author]" placeholder="Author" [(ngModel)]="myAuthor">
+      <button class="btn btn-lg btn-info btn-block" (click)='submit()'>Submit!</button>
+      <a routerLink="/campgrounds">Go back</a>
+  </div>
+</div>
