@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtService } from 'src/app/services/jwt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public user = '';
 
-  constructor() { }
+  constructor(private jwtservice: JwtService,
+              private router: Router) { }
 
   ngOnInit() {
+    if (this.jwtservice.loggedIn) {
+    this.user = localStorage.getItem('username');
+    }
+}
+
+  public logout() {
+    this.jwtservice.logout();
+    this.router.navigate(['']);
   }
 
 }
