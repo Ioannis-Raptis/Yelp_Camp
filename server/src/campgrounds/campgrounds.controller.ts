@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { CampgroundsService } from './campgrounds.service';
 import { Campground } from 'src/interfaces/campground.interface';
 import { Comment } from 'src/interfaces/comment.interface';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 
 @Controller('campgrounds')
 export class CampgroundsController {
@@ -39,6 +40,7 @@ export class CampgroundsController {
   }
 
   @Post(':id/comments')
+  @UseGuards(JwtAuthGuard)
   addComment(@Param('id') id, @Body() comment: Comment) {
     return this.campgroundsService.addComment(id, comment);
   }

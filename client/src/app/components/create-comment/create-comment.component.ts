@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CampgroundService } from 'src/services/campground.service';
+import { CampgroundService } from 'src/app/services/campground.service';
 import { ActivatedRoute } from '@angular/router';
 import { Campground } from 'src/app/interfaces/campground.interface';
 import { Comment } from 'src/app/interfaces/comment.interface';
@@ -41,7 +41,6 @@ export class CreateCommentComponent implements OnInit {
 
     this.campgroundService.addComment(this.campground._id, myComment)
       .subscribe((res) => {
-        console.log('addComment: ', res);
         this.router.navigate(['/campgrounds/' + this.campground._id ]);
     });
 

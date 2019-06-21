@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Campground } from 'src/app/interfaces/campground.interface';
 import { Comment } from 'src/app/interfaces/comment.interface';
-import { CampgroundService } from 'src/services/campground.service';
+import { CampgroundService } from 'src/app/services/campground.service';
 
 @Component({
   selector: 'app-campground-detail',

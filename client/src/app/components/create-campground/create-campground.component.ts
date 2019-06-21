@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Campground } from 'src/app/interfaces/campground.interface';
-import { CampgroundService } from 'src/services/campground.service';
+import { CampgroundService } from 'src/app/services/campground.service';
 import { Router } from '@angular/router';
 
 @Component({
