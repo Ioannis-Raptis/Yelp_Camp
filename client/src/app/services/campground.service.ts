@@ -29,7 +29,7 @@ export class CampgroundService {
       name: campground.name,
       imageUrl: campground.imageUrl,
       description: campground.description
-    });
+    }, {headers: {Authorization: 'Bearer ' + localStorage.getItem('accessToken')}});
   }
 
   public addComment(id: string, comment: Comment): Observable<void> {

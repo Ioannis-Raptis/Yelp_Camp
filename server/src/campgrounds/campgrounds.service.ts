@@ -29,9 +29,11 @@ export class CampgroundsService {
     }
   }
 
-  async create(campground: Campground): Promise<Campground> {
+  async create(campground: Campground, request: UserRequest): Promise<Campground> {
     try {
       const newCampground = new this.campgroundModel(campground);
+      newCampground.author.id = request.user._id;
+      newCampground.author.username = request.user.username;
       return await newCampground.save();
     } catch (error) {
       Logger.log(`Creating new document failed because of: ${error}`);

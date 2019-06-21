@@ -7,6 +7,7 @@ import { CreateCampgroundComponent } from './components/create-campground/create
 import { CampgroundDetailComponent } from './components/campground-detail/campground-detail.component';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './guards/authGuard.service';
 
 
 const routes: Routes = [
@@ -14,9 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'campgrounds', component: CampgroundsComponent},
-  {path: 'campgrounds/new', component: CreateCampgroundComponent},
+  {path: 'campgrounds/new', canActivate: [AuthGuardService], component: CreateCampgroundComponent},
   {path: 'campgrounds/:id', component: CampgroundDetailComponent},
-  {path: 'campgrounds/:id/comments/new', component: CreateCommentComponent}
+  {path: 'campgrounds/:id/comments/new', canActivate: [AuthGuardService], component: CreateCommentComponent}
 ];
 
 @NgModule({
