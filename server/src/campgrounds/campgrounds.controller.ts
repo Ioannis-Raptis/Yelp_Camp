@@ -22,8 +22,9 @@ export class CampgroundsController {
   }
 
   @Post()
-  create(@Body() campground: Campground) {
-    this.campgroundsService.create(campground);
+  @UseGuards(JwtAuthGuard)
+  create(@Req() request: UserRequest, @Body() campground: Campground) {
+    this.campgroundsService.create(campground, request);
   }
 
   @Delete(':id')
