@@ -35,7 +35,6 @@ export class CampgroundService {
   public addComment(id: string, comment: Comment): Observable<void> {
       return this.http.post<void>(this.campgroundsUrl + '/' + id + '/' + 'comments', {
         text: comment.text,
-        author: comment.author,
       }, {headers: {Authorization: 'Bearer ' + localStorage.getItem('accessToken')}});
     }
 

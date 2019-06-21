@@ -35,8 +35,7 @@ export class CreateCommentComponent implements OnInit {
   public async submit(): Promise<void> {
 
     const myComment: Comment = {
-      text: this.myText,
-      author: this.myAuthor,
+      text: this.myText
     };
 
     this.campgroundService.addComment(this.campground._id, myComment)

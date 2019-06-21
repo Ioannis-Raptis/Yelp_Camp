@@ -3,6 +3,7 @@ import { Campground } from 'src/interfaces/campground.interface';
 import { Comment } from 'src/interfaces/comment.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { UserRequest } from 'src/interfaces/userRequest.interface';
 
 @Injectable()
 export class CampgroundsService {
@@ -53,9 +54,11 @@ export class CampgroundsService {
     }
   }
 
-  async addComment(campgroundId: string, comment: Comment): Promise<Comment> {
+  async addComment(campgroundId: string, comment: Comment, request: UserRequest): Promise<Comment> {
     try {
       const newComment = new this.commentModel(comment);
+      newComment.author.id = request.user._id;
+      newComment.author.username = request.user.username;
       await newComment.save();
       const campground = await this.findOne(campgroundId);
       campground.comments.push(newComment);
