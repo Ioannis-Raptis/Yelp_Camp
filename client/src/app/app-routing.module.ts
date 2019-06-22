@@ -8,6 +8,7 @@ import { CampgroundDetailComponent } from './components/campground-detail/campgr
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuardService } from './guards/authGuard.service';
+import { EditCampgroundComponent } from './components/edit-campground/edit-campground.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'campgrounds', component: CampgroundsComponent},
   {path: 'campgrounds/new', canActivate: [AuthGuardService], component: CreateCampgroundComponent},
   {path: 'campgrounds/:id', component: CampgroundDetailComponent},
+  {path: 'campgrounds/:id/edit', component: EditCampgroundComponent},
   {path: 'campgrounds/:id/comments/new', canActivate: [AuthGuardService], component: CreateCommentComponent}
 ];
 

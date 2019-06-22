@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+    <h1 class="col-12 d-flex justify-content-center">Edit {{campground.name}} Campground</h1>
+        <input class="form-control" type="text"  name="name" placeholder="Name" [(ngModel)]="myName">
+        <input class="form-control" type="text" name= 'image' placeholder="Image url" [(ngModel)]="myImageUrl">
+        <input class="form-control" type="text" name= 'description' placeholder="Description" [(ngModel)]="myDescription">
+      <button class="btn btn-lg btn-info btn-block" (click)='submit()'>Submit!</button>
+      <a routerLink="/campgrounds/{{campground._id}}">Go back</a>
+  </div>
+</div>

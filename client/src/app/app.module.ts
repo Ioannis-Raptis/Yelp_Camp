@@ -15,6 +15,7 @@ import { CampgroundDetailComponent } from './components/campground-detail/campgr
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { EditCampgroundComponent } from './components/edit-campground/edit-campground.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
     CampgroundDetailComponent,
     CreateCommentComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    EditCampgroundComponent
   ],
   imports: [
     BrowserModule,
