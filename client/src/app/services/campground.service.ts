@@ -32,6 +32,14 @@ export class CampgroundService {
     }, {headers: {Authorization: 'Bearer ' + localStorage.getItem('accessToken')}});
   }
 
+  public update(id: string, campground: Campground): Observable<void> {
+    return this.http.put<void>(this.campgroundsUrl + '/' + id, {
+      name: campground.name,
+      imageUrl: campground.imageUrl,
+      description: campground.description
+    });
+  }
+
   public addComment(id: string, comment: Comment): Observable<void> {
       return this.http.post<void>(this.campgroundsUrl + '/' + id + '/' + 'comments', {
         text: comment.text,
