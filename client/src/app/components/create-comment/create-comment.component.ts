@@ -32,7 +32,7 @@ export class CreateCommentComponent implements OnInit {
 
   }
 
-  public async submit(): Promise<void> {
+  public async submitComment(): Promise<void> {
 
     const myComment: Comment = {
       text: this.myText

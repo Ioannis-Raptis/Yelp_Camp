@@ -20,13 +20,14 @@
           <p>
             <em>Submitted By {{campground.author.username}}</em>
           </p>
-          <p><a routerLink="/campgrounds/{{campground._id}}/edit" class="btn btn-info btn-lg">Edit Campground</a></p>
+          <p routerLink="/campgrounds/{{campground._id}}/edit" id="editButton" class="btn btn-outline-warning btn-lg">Edit Campground</p>
+          <p (click)='delete()' class="btn btn-outline-danger btn-lg">Delete Campground</p>
         </div>
       </div>
 
       <div class="card card-body bg-light">
         <div class="text-right">
-            <p><a routerLink="/campgrounds/{{campground._id}}/comments/new" class="btn btn-info btn-lg">Add a new comment</a></p>
+            <p><a routerLink="/campgrounds/{{campground._id}}/comments/new" class="btn btn-outline-info btn-lg">Add a new comment</a></p>
         </div>
         <hr>
         <div class="row" *ngFor="let comment of comments">
@@ -39,7 +40,7 @@
           </div>
         </div>
       </div>
-      <a routerLink="/campgrounds">Return To Campgrounds</a>
+      <a routerLink="/campgrounds" >Return To Campgrounds</a>
     </div>  
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Campground } from 'src/app/interfaces/campground.interface';
 import { Comment } from 'src/app/interfaces/comment.interface';
 import { CampgroundService } from 'src/app/services/campground.service';
@@ -15,7 +15,8 @@ export class CampgroundDetailComponent implements OnInit {
   public comments: Comment[];
 
   constructor(private route: ActivatedRoute,
-              private campgroundService: CampgroundService) { }
+              private campgroundService: CampgroundService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -31,5 +32,18 @@ export class CampgroundDetailComponent implements OnInit {
         });
     });
   }
+
+  public async delete(): Promise<void> {
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+
+      this.campgroundService.delete(id).subscribe( () => {
+        this.router.navigate(['/campgrounds']);
+      });
+    });
+
+  }
+
 
 }

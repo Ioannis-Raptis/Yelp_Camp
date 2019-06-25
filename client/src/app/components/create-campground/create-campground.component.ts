@@ -13,6 +13,8 @@ export class CreateCampgroundComponent implements OnInit {
   public myName = '';
   public myImageUrl = '';
   public myDescription: '';
+  public myId: '';
+  public myComments: [];
 
   constructor(private campgroundService: CampgroundService,
               private router: Router) { }
@@ -27,6 +29,8 @@ export class CreateCampgroundComponent implements OnInit {
       name: this.myName,
       imageUrl: this.myImageUrl,
       description: this.myDescription,
+      _id: this.myId,
+      comments: this.myComments
     };
 
     const campgroundObv = this.campgroundService.create(myCampground);

@@ -33,11 +33,16 @@ export class CampgroundService {
   }
 
   public update(id: string, campground: Campground): Observable<void> {
+    console.log(campground);
     return this.http.put<void>(this.campgroundsUrl + '/' + id, {
       name: campground.name,
       imageUrl: campground.imageUrl,
-      description: campground.description
+      description: campground.description,
     });
+  }
+
+  public delete(id: string): Observable<Campground> {
+    return this.http.delete<Campground>(this.campgroundsUrl + '/' + id);
   }
 
   public addComment(id: string, comment: Comment): Observable<void> {
