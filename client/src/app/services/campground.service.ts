@@ -33,7 +33,6 @@ export class CampgroundService {
   }
 
   public update(id: string, campground: Campground): Observable<void> {
-    console.log(campground);
     return this.http.put<void>(this.campgroundsUrl + '/' + id, {
       name: campground.name,
       imageUrl: campground.imageUrl,
@@ -52,7 +51,22 @@ export class CampgroundService {
     }
 
   public getComments(id: string): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.campgroundsUrl + '/' + id + '/' + 'comments');
+    return this.http.get<Comment[]>(this.campgroundsUrl + '/' + id + '/comments');
+  }
+
+  public getCommentById(id: string, commentId: string): Observable<Comment> {
+    return this.http.get<Comment>(this.campgroundsUrl + '/' + id + '/comments/' + commentId);
+  }
+
+  public updateComment(id: string, commentId: string, comment: Comment): Observable<void> {
+    return this.http.put<void>(this.campgroundsUrl + '/' + id + '/comments/' + commentId, {
+      text: comment.text,
+    });
+  }
+
+  public deleteComment(id: string, commentId: string): Observable<Comment> {
+    console.log(this.campgroundsUrl + '/' + id + '/comments/' + commentId);
+    return this.http.delete<Comment>(this.campgroundsUrl + '/' + id + '/comments/' + commentId);
   }
 
 }

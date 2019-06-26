@@ -16,6 +16,7 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditCampgroundComponent } from './components/edit-campground/edit-campground.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditCampgroundComponent } from './components/edit-campground/edit-campg
     CreateCommentComponent,
     RegisterComponent,
     LoginComponent,
-    EditCampgroundComponent
+    EditCampgroundComponent,
+    EditCommentComponent
   ],
   imports: [
     BrowserModule,
