@@ -13,6 +13,7 @@ import { CampgroundService } from 'src/app/services/campground.service';
 export class CampgroundDetailComponent implements OnInit {
   public campground: Campground;
   public comments: Comment[];
+  private campgroundId: string;
 
   constructor(private route: ActivatedRoute,
               private campgroundService: CampgroundService,
@@ -21,29 +22,34 @@ export class CampgroundDetailComponent implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
+      this.campgroundId = params.get('id');
 
-      this.campgroundService.getById(id).subscribe(data => {
-        this.campground = data;
-      });
-
-      this.campgroundService.getComments(id).subscribe(data => {
-        this.comments = data;
-        });
+      this.getCampground();
+      this.getComments();
     });
   }
 
   public async delete(): Promise<void> {
-
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-
-      this.campgroundService.delete(id).subscribe( () => {
-        this.router.navigate(['/campgrounds']);
-      });
+    this.campgroundService.delete(this.campgroundId).subscribe( () => {
+      this.router.navigate(['/campgrounds']);
     });
-
   }
 
+  public async deleteComment(commentId: string): Promise<void> {
+    this.campgroundService.deleteComment(this.campgroundId, commentId).subscribe( () => {
+      this.getComments();
+    });
+  }
 
+  private getCampground(): void {
+    this.campgroundService.getById(this.campgroundId).subscribe(data => {
+      this.campground = data;
+    });
+  }
+
+  private getComments(): void {
+    this.campgroundService.getComments(this.campgroundId).subscribe(data => {
+      this.comments = data;
+    });
+  }
 }

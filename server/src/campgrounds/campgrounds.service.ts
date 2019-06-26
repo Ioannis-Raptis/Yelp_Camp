@@ -71,6 +71,30 @@ export class CampgroundsService {
     }
   }
 
+  async findOneComment(commentId: string): Promise<Comment> {
+    try {
+      return await this.commentModel.findOne({ _id: commentId });
+    } catch (error) {
+      Logger.log(`Querying the document failed because of: ${error}`);
+    }
+  }
+
+  async deleteComment(commentId: string): Promise<Comment> {
+    try {
+      return await this.commentModel.findByIdAndRemove(commentId);
+    } catch (error) {
+      Logger.log(`Deleting document failed because of: ${error}`);
+    }
+  }
+
+  async updateComment(commentId: string, comment: Comment): Promise<Comment> {
+    try {
+      return await this.commentModel.findByIdAndUpdate(commentId, comment, { new: true });
+    } catch (error) {
+      Logger.log(`Updating document failed because of: ${error}`);
+    }
+  }
+
   async populateComments(campgroundId: string): Promise<Campground> {
     try {
       const campground = await this.campgroundModel.

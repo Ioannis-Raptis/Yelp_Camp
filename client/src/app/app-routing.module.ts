@@ -9,6 +9,7 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuardService } from './guards/authGuard.service';
 import { EditCampgroundComponent } from './components/edit-campground/edit-campground.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'campgrounds/new', canActivate: [AuthGuardService], component: CreateCampgroundComponent},
   {path: 'campgrounds/:id', component: CampgroundDetailComponent},
   {path: 'campgrounds/:id/edit', component: EditCampgroundComponent},
-  {path: 'campgrounds/:id/comments/new', canActivate: [AuthGuardService], component: CreateCommentComponent}
+  {path: 'campgrounds/:id/comments/new', canActivate: [AuthGuardService], component: CreateCommentComponent},
+  {path: 'campgrounds/:id/comments/:commentId/edit', canActivate: [AuthGuardService], component: EditCommentComponent}
 ];
 
 @NgModule({
